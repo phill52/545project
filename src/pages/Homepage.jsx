@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Card from '../components/Card';
 
 export default function Homepage() {
   return (
     <div className="flex flex-col justify-center align-center h-screen home-grad px-[12%]">
-    <div className="bg-cream rounded-lg text-center px-[12%]">
+      <Card>
       <h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">My Project</h2>
         <div className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5">
           Resume
@@ -26,7 +27,7 @@ export default function Homepage() {
             </div>
           </div>
     </div>
-  </div>
+    </Card>
   </div>
   )
 }

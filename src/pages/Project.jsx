@@ -113,7 +113,7 @@ export default function Project() {
 	return (
 		<main>
 		<Card>
-			<div className="my-8">
+			<div>
 				{project ? (
 					<div>
 						<h2 className="text-4xl font-bold text-darkviolet">

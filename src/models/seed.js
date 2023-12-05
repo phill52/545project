@@ -19,4 +19,7 @@ export async function seed() {
 		start: new Date("2020-01-02T09:00:00"),
 		end: new Date("2020-01-02T17:00:00"),
 	});
+	await db.currentproject.add({
+		id: 1,
+	});
 }

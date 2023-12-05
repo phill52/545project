@@ -19,9 +19,6 @@ export default function Homepage() {
           </div>
 
           <div className='flex flex-col w-[60%]'>
-            <div className='bg-lightorange rounded-[30px] text-3xl mb-2 py-1.5 text-darkviolet'>
-              Invite Another Member
-            </div>
             <div className='bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet'>
               Switch Project
             </div>

@@ -1,5 +1,5 @@
 import Dexie from "dexie";
-import { seed } from "./seed";
+import { seed } from "./seed.js";
 export const db = new Dexie("myDb");
 db.version(1).stores({
 	projects: "++id, name, payrate, shifts",

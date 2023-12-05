@@ -111,6 +111,7 @@ export default function Project() {
 
 	// Render project data
 	return (
+		<main>
 		<Card>
 			<div className="my-8">
 				{project ? (
@@ -167,5 +168,6 @@ export default function Project() {
 				)}
 			</div>
 		</Card>
+		</main>
 	);
 }

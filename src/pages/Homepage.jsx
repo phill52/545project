@@ -2,29 +2,39 @@ import React from "react";
 import Card from "../components/Card";
 import { useQuery } from "react-query";
 import { db } from "../models/db.js";
+import {
+	formatDateTime,
+	hoursDifference,
+	totalPay,
+	timeElapsed,
+} from "../utilFunctions";
+import { fetchProjectByID, fetchCurrentProjectID } from "../fetchFunctions";
 
 export default function Homepage() {
-	const fetchCurrentProject = async () => {
-		const currentProjectId = await db.currentproject.get(1);
-		if (currentProjectId === undefined) {
-			return null;
-		} else {
-			const project = await db.projects.get(currentProjectId.id);
-			return project;
-		}
-	};
+	const {
+		data: currentProjectId,
+		isLoading,
+		error,
+	} = useQuery("currentProject", fetchCurrentProjectID);
 
 	const {
 		data: currentProject,
-		isLoading,
-		error,
-	} = useQuery("currentProject", fetchCurrentProject);
+		isLoading: isLoadingProject,
+		error: errorProject,
+	} = useQuery(
+		["project", currentProjectId],
+		() => fetchProjectByID(currentProjectId),
+		{
+			enabled: !!currentProjectId && !isNaN(currentProjectId), // This ensures the query runs only if id is available
+		}
+	);
 
+	console.log(currentProject);
 	if (isLoading) {
 		return <div>Loading...</div>;
 	} else if (error) {
 		return <div>Error: {error.message}</div>;
-	} else if (currentProject === null) {
+	} else if (currentProjectId === null) {
 		return (
 			<div className="flex flex-col justify-center align-center h-screen home-grad px-[12%]">
 				<Card>
@@ -50,11 +60,20 @@ export default function Homepage() {
 		<div className="flex flex-col justify-center align-center h-screen home-grad px-[12%]">
 			<Card>
 				<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">
-					My Project
+					{/* {currentProject.name} */}
 				</h2>
-				<div className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5">
-					Resume
-				</div>
+				{/* {isLoadingShifts ? (
+					<div>Loading...</div>
+				) : errorShifts ? (
+					<div>Error: {errorShifts.message}</div>
+				) : shifts.length > 0 || !shifts[0].end ? (
+					<p>hello</p>
+				) : (
+					<div className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5">
+						Resume
+					</div>
+				)} */}
+
 				<div className="flex flex-row mt-2 mb-6">
 					<div>
 						<ul className="text-left text-darkviolet text-4xl w-full">

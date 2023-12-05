@@ -6,6 +6,7 @@ const fetchProjectByID = async (id) => {
 		throw new Error("Project ID must be a number");
 	}
 	const project = await db.projects.get(parseInt(id));
+	console.log(project);
 	let shifts = [];
 	console.log(project);
 	for (let id of project.shifts) {
@@ -19,7 +20,7 @@ const fetchProjectByID = async (id) => {
 const fetchCurrentProjectID = async () => {
 	const currentProjectId = await db.currentproject.get(1);
 	if (currentProjectId) {
-		return currentProjectId.project;
+		return currentProjectId;
 	} else {
 		return null;
 	}

@@ -1,24 +1,31 @@
 const timeElapsed = (shifts) => {
-	//calculates the time and returns it as hours and minutes
-	let total = 0;
+	let totalMilliseconds = 0;
 	for (let shift of shifts) {
-		total += shift.end - shift.start;
+		if (shift.end) {
+			totalMilliseconds += shift.end - shift.start;
+		} else {
+			totalMilliseconds += Date.now() - shift.start;
+		}
 	}
-	total = Math.floor(total / 1000);
-	total = Math.floor(total / 3600);
-	let minutes = Math.floor((total / 60) % 60);
+	let totalMinutes = Math.floor(totalMilliseconds / 60000);
+	let hours = Math.floor(totalMinutes / 60);
+	let minutes = totalMinutes % 60;
 	if (minutes < 10) {
 		minutes = "0" + minutes;
 	}
-	total = `${total} hours, ${minutes} minutes`;
-	return total;
+
+	return `${hours} hours, ${minutes} minutes`;
 };
 
 const totalPay = (shifts, payrate) => {
 	//calculates the total pay for the project
 	let total = 0;
 	for (let shift of shifts) {
-		total += shift.end - shift.start;
+		if (shift.end) {
+			total += shift.end - shift.start;
+		} else {
+			total += Date.now() - shift.start;
+		}
 	}
 	total = Math.floor(total / 1000);
 	total = Math.floor(total / 3600);

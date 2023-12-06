@@ -1,5 +1,3 @@
-import CryptoJS from "crypto-js";
-
 const timeElapsed = (shifts) => {
 	//calculates the time and returns it as hours and minutes
 	let total = 0;

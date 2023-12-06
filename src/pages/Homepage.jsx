@@ -104,13 +104,13 @@ export default function Homepage() {
 						No project selected
 					</h2>
 					<a href="/createproject">
-						<div className="bg-darkblue rounded-[30px] text-center text-cream text-4xl py-3.5">
+						<div className="bg-darkblue rounded-[30px] text-center text-cream text-4xl py-3.5 hover:cursor-pointer hover:underline">
 							Create Project
 						</div>
 					</a>
 					<br />
 					<a href="/viewprojects">
-						<div className="bg-brightyellow rounded-[30px] text-center text-olive text-4xl py-3.5">
+						<div className="bg-brightyellow rounded-[30px] text-center text-olive text-4xl py-3.5 hover:cursor-pointer hover:underline">
 							View Projects
 						</div>
 					</a>
@@ -130,14 +130,14 @@ export default function Homepage() {
 				<div className="flex flex-col mt-2 mb-6">
 					{shifts.length === 0 || shifts[shifts.length - 1].end ? (
 						<div
-							className="bg-lightgreen rounded-[30px] text-center text-white text-4xl py-2.5 hover:cursor-pointer"
+							className="bg-lightgreen rounded-[30px] text-center text-white text-4xl py-2.5 hover:cursor-pointer hover:underline"
 							onClick={onResume}
 						>
 							Resume
 						</div>
 					) : (
 						<div
-							className="bg-darkred w-full rounded-[30px] text-center text-white text-4xl py-2.5 hover:cursor-pointer"
+							className="bg-darkred w-full rounded-[30px] text-center text-white text-4xl py-2.5 hover:cursor-pointer hover:underline"
 							onClick={onPause}
 						>
 							Punch Out
@@ -180,7 +180,7 @@ export default function Homepage() {
 						</ul>
 						<div className="flex flex-col w-[60%]">
 							<a href="/projects">
-								<div className="bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet hover:cursor-pointer">
+								<div className="bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet hover:cursor-pointer hover:underline">
 									Switch Project
 								</div>
 							</a>

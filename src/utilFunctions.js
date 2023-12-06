@@ -44,7 +44,10 @@ const formatDateTime = (date) => {
 	let year = date.getFullYear();
 	let hour = date.getHours() % 12;
 	let minute = pad(date.getMinutes());
-	let period = hour > 12 ? "PM" : "AM";
+	if (hour === 0) {
+		hour = 12;
+	}
+	let period = hour > 12 ? "AM" : "PM";
 	return `${month}/${day}/${year} ${hour}:${minute} ${period}`;
 };
 

@@ -146,14 +146,25 @@ export default function Homepage() {
 					<div className="flex flex-row my-4">
 						<ul className="text-left text-darkviolet text-4xl w-full">
 							<li>
-								{/* {currentProject.shifts.length > 0
-									? `Last ended at ${formatDateTime(
-											shifts[shifts.length - 1].end
-									  )}`
-									: "No shifts recorded"} */}
-
-								{/* Last ended at {currentProject.shifts[0].end} */}
+								{currentProject.shifts.length > 0
+									? currentProject.shifts[
+											currentProject.shifts.length - 1
+									  ].end
+										? `Last ended at ${formatDateTime(
+												currentProject.shifts[
+													currentProject.shifts
+														.length - 1
+												].end
+										  )}`
+										: `Currently working since ${formatDateTime(
+												currentProject.shifts[
+													currentProject.shifts
+														.length - 1
+												].start
+										  )}`
+									: "No shifts recorded"}
 							</li>
+
 							<li>
 								Total time: {timeElapsed(currentProject.shifts)}
 							</li>

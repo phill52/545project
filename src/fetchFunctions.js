@@ -5,12 +5,16 @@ const fetchProjectByID = async (id) => {
 	if (isNaN(id)) {
 		throw new Error("Project ID must be a number");
 	}
-	const project = await db.projects.get(parseInt(id));
+	if (typeof id !== "number") {
+		id = parseInt(id);
+	}
+	const project = await db.projects.get(id);
 	console.log(project);
 	let shifts = [];
-	console.log(project);
+	console.log("boop", project);
 	for (let id of project.shifts) {
-		let shift = await db.shifts.get(parseInt(id));
+		console.log("blop", id);
+		let shift = await db.shifts.get(id);
 		shifts.push(shift);
 	}
 	project.shifts = shifts;

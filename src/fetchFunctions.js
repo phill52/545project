@@ -26,4 +26,14 @@ const fetchCurrentProjectID = async () => {
 	}
 };
 
-export { fetchProjectByID, fetchCurrentProjectID };
+const fetchCurrentProject = async () => {
+	const currentProjectId = await fetchCurrentProjectID();
+	if (currentProjectId) {
+		const currentProject = await fetchProjectByID(currentProjectId.id);
+		return currentProject;
+	} else {
+		return null;
+	}
+};
+
+export { fetchProjectByID, fetchCurrentProjectID, fetchCurrentProject };

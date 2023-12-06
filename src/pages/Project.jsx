@@ -51,6 +51,7 @@ export default function Project() {
 
 	// Render project data
 	return (
+		<main>
 		<Card>
 			<div>
 				{project ? (
@@ -107,5 +108,6 @@ export default function Project() {
 				)}
 			</div>
 		</Card>
+		</main>
 	);
 }

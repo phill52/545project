@@ -57,7 +57,18 @@ export default function Homepage() {
 				<div className="flex flex-row mt-2 mb-6">
 					<div>
 						<ul className="text-left text-darkviolet text-4xl w-full">
+							{(currentProject.shifts.length > 0) && (
+									!!shifts[0].end) ? (
+										
+									)
+								)}
 							<li>
+								{currentProject.shifts.length > 0
+									? `Last ended at ${formatDateTime(
+											currentProject.shifts[0].end
+									  )}`
+									: "No shifts recorded"}
+
 								{/* Last ended at {currentProject.shifts[0].end} */}
 							</li>
 							<li>

@@ -10,6 +10,8 @@ export default {
 				lightorange: "#F5C08F",
 				brightyellow: "#FFCD1E",
 				darkgreen: "#58A386",
+				darkblue: "#587BA3",
+				darkred: "#A3586F",
 			},
 		},
 	},

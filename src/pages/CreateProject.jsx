@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Card from "../components/Card";
 import { db } from "../models/db.js";
 import { useQuery } from "react-query";
+import { generateRandomId } from "../utilFunctions";
 
 export default function Project() {
 	const [projectName, setProjectName] = useState("");
@@ -17,8 +18,10 @@ export default function Project() {
 		// Storing the project name and the the payrate into the db
 		try {
 			const projectID = await db.projects.add({
+				id: generateRandomId(),
 				name: projectName,
-				payrate: payrate,
+				payrate: parseInt(payrate),
+				shifts: [],
 			});
 			console.log(`Project ${projectID} added successfully`);
 			// Reseting the form after a sucessful insert

@@ -2,6 +2,9 @@ import { db } from "./models/db";
 import { timeElapsed, formatDateTime } from "./utilFunctions";
 
 const fetchProjectByID = async (id) => {
+
+const fetchProjectByID = async (id) => {
+	console.log("hello");
 	if (isNaN(id)) {
 		throw new Error("Project ID must be a number");
 	}
@@ -11,6 +14,7 @@ const fetchProjectByID = async (id) => {
 	const project = await db.projects.get(id);
 	let shifts = [];
 	for (let id of project.shifts) {
+
 		let shift = await db.shifts.get(id);
 		shifts.push(shift);
 	}
@@ -21,6 +25,7 @@ const fetchProjectByID = async (id) => {
 const fetchCurrentProjectID = async () => {
 	let currentProjectId = await db.currentproject.toArray();
 	currentProjectId = currentProjectId[0];
+	const currentProjectId = await db.currentproject.get(1);
 	if (currentProjectId) {
 		return currentProjectId;
 	} else {
@@ -75,3 +80,4 @@ export {
 	fetchCurrentProject,
 	fetchAllProjects,
 };
+export { fetchProjectByID, fetchCurrentProjectID, fetchCurrentProject };

@@ -3,6 +3,8 @@ import Homepage from "./pages/Homepage";
 import Project from "./pages/Project";
 import CreateProject from "./pages/CreateProject";
 import Projects from "./pages/Projects";
+import PageNotFound from "./pages/PageNotFound";
+
 function App() {
 	return (
 		<BrowserRouter>
@@ -12,6 +14,7 @@ function App() {
 					<Route path="/project/:id" element={<Project />} />
 					<Route path="/project/create" element={<CreateProject />} />
 					<Route path="/Projects" element={<Projects />} />
+					<Route path="*" element={<PageNotFound />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

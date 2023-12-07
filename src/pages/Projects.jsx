@@ -90,7 +90,7 @@ export default function Projects() {
 						</div>
 						<div className="flex flex-col w-[60%]">
 							<div
-								className="bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet"
+								className="bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet hover:cursor-pointer hover:underline"
 								onClick={() => deleteProject(project.id)}
 							>
 								Delete Project

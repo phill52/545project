@@ -1,4 +1,7 @@
 import { db } from "./models/db";
+import { timeElapsed, formatDateTime } from "./utilFunctions";
+
+const fetchProjectByID = async (id) => {
 
 const fetchProjectByID = async (id) => {
 	console.log("hello");
@@ -9,11 +12,9 @@ const fetchProjectByID = async (id) => {
 		id = parseInt(id);
 	}
 	const project = await db.projects.get(id);
-	console.log(project);
 	let shifts = [];
-	console.log("boop", project);
 	for (let id of project.shifts) {
-		console.log("blop", id);
+
 		let shift = await db.shifts.get(id);
 		shifts.push(shift);
 	}
@@ -22,6 +23,8 @@ const fetchProjectByID = async (id) => {
 };
 
 const fetchCurrentProjectID = async () => {
+	let currentProjectId = await db.currentproject.toArray();
+	currentProjectId = currentProjectId[0];
 	const currentProjectId = await db.currentproject.get(1);
 	if (currentProjectId) {
 		return currentProjectId;
@@ -40,4 +43,41 @@ const fetchCurrentProject = async () => {
 	}
 };
 
+const fetchAllProjects = async () => {
+	const projects = await db.projects.toArray();
+
+	const projectsWithTimeElapsedPromises = projects.map(async (project) => {
+		const fullProject = await fetchProjectByID(project.id);
+		const totalTime = timeElapsed(fullProject.shifts);
+		const lastEnded =
+			fullProject.shifts.length > 0
+				? fullProject.shifts[fullProject.shifts.length - 1].end
+					? `Last ended at ${formatDateTime(
+							fullProject.shifts[fullProject.shifts.length - 1]
+								.end
+					  )}`
+					: `Currently working since ${formatDateTime(
+							fullProject.shifts[fullProject.shifts.length - 1]
+								.start
+					  )}`
+				: "No shifts recorded";
+		return {
+			...project,
+			totalTime,
+			lastEnded,
+		};
+	});
+
+	const projectsWithTimeElapsed = await Promise.all(
+		projectsWithTimeElapsedPromises
+	);
+	return projectsWithTimeElapsed;
+};
+
+export {
+	fetchProjectByID,
+	fetchCurrentProjectID,
+	fetchCurrentProject,
+	fetchAllProjects,
+};
 export { fetchProjectByID, fetchCurrentProjectID, fetchCurrentProject };

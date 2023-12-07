@@ -6,4 +6,4 @@ db.version(1).stores({
 	shifts: "++id, project, start, end",
 	currentproject: "++id",
 });
-db.on("populate", seed);
+// db.on("populate", seed);

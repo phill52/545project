@@ -8,7 +8,7 @@ import PageNotFound from "./pages/PageNotFound";
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="flex flex-col justify-center align-center h-screen home-grad px-[12%]">
+			<div className="flex flex-col justify-center align-center h-full home-grad px-[12%]">
 				<Routes>
 					<Route path="/" element={<Homepage />} />
 					<Route path="/project/:id" element={<Project />} />

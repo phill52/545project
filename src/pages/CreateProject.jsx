@@ -54,7 +54,7 @@ export default function Project() {
 			<Card>
 				<div className="p-6">
 					<h2 className="text-5xl font-bold text-darkviolet text-left">
-						Create a new Project
+						Create a New Project
 					</h2>
 					<div className="flex flex-col w-full rounded-lg text-left px-4 pt-12">
 						<form

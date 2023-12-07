@@ -8,7 +8,6 @@ import Project from "./Project";
 import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
-	const { id } = useParams();
 	const navigate = useNavigate();
 
 	const {
@@ -122,6 +121,8 @@ export default function Projects() {
 	} else {
 		return (
 			<div className="flex flex-col  align-center h-screen home-grad px-[12%]">
+				<Card></Card>
+
 				{projects ? (
 					<CardList items={projects} />
 				) : (

@@ -22,7 +22,6 @@ const fetchProjectByID = async (id) => {
 const fetchCurrentProjectID = async () => {
 	let currentProjectId = await db.currentproject.toArray();
 	currentProjectId = currentProjectId[0];
-	currentProjectId = await db.currentproject.get(1);
 	if (currentProjectId) {
 		return currentProjectId;
 	} else {

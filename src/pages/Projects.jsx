@@ -7,6 +7,10 @@ import { useQuery } from "react-query";
 export default function Projects() {
 	const { id } = useParams();
 
+	//var dataList = [{id:1,title:'Project 1',description:'Project 1 Description'},{id:2,title:'Project 2',description:'Project 2 Description'}];
+
+	var numProjects = 2;
+
 	// Define the function to fetch project data
 	const fetchProject = async () => {
 		if (isNaN(id)) {
@@ -56,6 +60,17 @@ export default function Projects() {
 		total = `${total} hours, ${minutes} minutes`;
 		return total;
 	};
+
+	const dataList = ()=>{
+		const projectList = [
+		{id:1,title:'Project 1',description:'Project 1 Description',ended:'12:30',total:'5 hours, 30 minutes',pay:'$10'},
+		{id:2,title:'Project 2',ended:'5:45',total:'12 hours, 11 minutes',pay:'$15'},
+		{id:3,title:'Project 3',ended:'5:30',total:'12 hours, 11 minutes',pay:'$15'},
+		{id:4,title:'Project 4',ended:'5:45',total:'12 hours, 11 minutes',pay:'$15'},
+		{id:5,title:'Project 5',ended:'5:45',total:'12 hours, 11 minutes',pay:'$15'}];
+
+		return <CardList items={projectList}/>;
+	}
 
 	const totalPay = (shifts, payrate) => {
 		//calculates the total pay for the project
@@ -109,60 +124,63 @@ export default function Projects() {
 		return `${hours} hours, ${minutes} minutes`;
 	};
 
+	const Card2 = ({item})=>{
+		if(!item){
+			return null;
+		}
+		return (
+			
+			<Card>
+				<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">{item.title}</h2>
+        <div className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5">
+          Select Project
+        </div>
+        <div className='flex flex-row mt-2 mb-6'>
+          <div>
+            <ul className='text-left text-darkviolet text-4xl w-full'>
+              <li>Last ended at {item.ended}</li>
+              <li>Total time: {item.total}</li>
+              <li>Pay rate: {item.pay}</li>
+
+            </ul>
+          </div>
+
+          <div className='flex flex-col w-[60%]'>
+            <div className='bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet'>
+              Delete Project
+            </div>
+          </div>
+    	</div>
+			</Card>
+		
+		);
+	}	
+
+	const CardList = ({items}) => {
+		if(!items){
+			return null;
+		}
+		return (
+			<div>
+			<div>
+				{items.map(item => (
+					<Card2 key = {item.id} item={item}/>
+				))}
+			</div>
+			</div>
+		)
+	}
+ 
 	
-	
+
 
 	// Render project data
 	return (
-		<div className="flex flex-col justify-center align-center h-screen home-grad px-[12%]">
-    
+		<div className="flex flex-col  align-center h-screen home-grad px-[12%]">
+   
+	{dataList()
+	}
 	  
-	<list>
-	
-	
-	<Card>
-      	<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">Project 1</h2>
-        <div className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5">
-          Select Project
-        </div>
-        <div className='flex flex-row mt-2 mb-6'>
-          <div>
-            <ul className='text-left text-darkviolet text-4xl w-full'>
-              <li>Last ended at 12:30</li>
-              <li>Total time: 5 hours, 30 minutes</li>
-              <li>Pay rate: 10$</li>
-            </ul>
-          </div>
-
-          <div className='flex flex-col w-[60%]'>
-            <div className='bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet'>
-              Delete Project
-            </div>
-          </div>
-    	</div>
-    </Card>
-	<Card>
-      	<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">Project 2</h2>
-        <div className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5">
-          Select Project
-        </div>
-        <div className='flex flex-row mt-2 mb-6'>
-          <div>
-            <ul className='text-left text-darkviolet text-4xl w-full'>
-              <li>Last ended at 5:45</li>
-              <li>Total time: 12 hours, 15 minutes</li>
-              <li>Pay rate: 15$</li>
-            </ul>
-          </div>
-
-          <div className='flex flex-col w-[60%]'>
-            <div className='bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet'>
-              Delete Project
-            </div>
-          </div>
-    	</div>
-    </Card>
-	</list>
 	
 	  
   </div>

@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Project from "./pages/Project";
 import CreateProject from "./pages/CreateProject";
-import Projects from "./pages/Projects"
+import Projects from "./pages/Projects";
 function App() {
 	return (
 		<BrowserRouter>

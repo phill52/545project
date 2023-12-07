@@ -4,10 +4,23 @@ import Card from "../components/Card";
 import { db } from "../models/db.js";
 import { useQuery } from "react-query";
 import { generateRandomId } from "../utilFunctions";
+import { useNavigate } from "react-router-dom";
 
 export default function Project() {
 	const [projectName, setProjectName] = useState("");
 	const [payrate, setPayrate] = useState(0);
+	const [buttonText, setButtonText] = useState("Create Project");
+	const [buttonColor, setButtonColor] = useState("bg-brightyellow");
+
+	// Function to change the button color and text
+	const handleButtonChange = () => {
+		setButtonColor("bg-green-300");
+		setButtonText("Created Project");
+		setTimeout(() => {
+			setButtonColor("bg-brightyellow");
+			setButtonText("Create Project");
+		}, 500);
+	};
 
 	// Function to handle the form input
 	const handleSubmit = async (e) => {
@@ -17,6 +30,10 @@ export default function Project() {
 		console.log(`Payrate ${payrate}`);
 		// Storing the project name and the the payrate into the db
 		try {
+			// Preventing the user from adding a project with an empty name
+			if (projectName.trim() === "")
+				throw new Error("Project name cannot be empty");
+			handleButtonChange();
 			const projectID = await db.projects.add({
 				id: generateRandomId(),
 				name: projectName,
@@ -78,16 +95,19 @@ export default function Project() {
 							<div className="flex justify-center pt-10">
 								<input
 									type="submit"
-									value="Create Project"
-									className="
-							bg-brightyellow
-                            text-3xl
-							py-2
-							px-4
-							rounded-full
-                            h-24
-                            w-5/6
-                            "
+									value={buttonText}
+									disabled={buttonText === "Created Project"}
+									className={`
+									${buttonColor}
+									text-3xl
+									py-2
+									px-4
+									rounded-full
+									h-24
+									w-5/6
+									hover:cursor-pointer
+									hover:underline
+									`}
 								/>
 							</div>
 						</form>

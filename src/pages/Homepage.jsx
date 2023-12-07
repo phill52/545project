@@ -103,7 +103,7 @@ export default function Homepage() {
 					<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">
 						No project selected
 					</h2>
-					<a href="/createproject">
+					<a href="/project/create">
 						<div className="bg-darkblue rounded-[30px] text-center text-cream text-4xl py-3.5 hover:cursor-pointer hover:underline">
 							Create Project
 						</div>

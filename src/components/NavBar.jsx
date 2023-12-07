@@ -1,16 +1,24 @@
-import React from 'react';
+import React from "react";
 
 const NavBar = () => {
-  return (
-    <nav>
-      <ul className="bg-cream h-16">
-        <h1 className="text-4xl font-bold text-darkviolet inline mx-3">WorkWind</h1>
-        <li className="inline mx-8 text-2xl hover:underline"><a href="/">Home</a></li>
-        <li className="inline mx-8 text-2xl hover:underline"><a href="/Projects">Projects</a></li>
-        <li className="inline mx-8 text-2xl hover:underline"><a href="/Project/Create">Create a Project</a></li>
-      </ul>
-    </nav>
-  );
+	return (
+		<nav className="flex items-center bg-cream h-16">
+			<ul className="flex flex-wrap justify-center items-center">
+				<li className="text-4xl font-bold text-darkviolet mx-3">
+					WorkWind
+				</li>
+				<li className="mx-3 text-2xl hover:underline text-darkviolet">
+					<a href="/">Home</a>
+				</li>
+				<li className="mx-3 text-2xl hover:underline text-darkviolet">
+					<a href="/Projects">Projects</a>
+				</li>
+				<li className="mx-3 text-2xl hover:underline text-darkviolet">
+					<a href="/Project/Create">Create a Project</a>
+				</li>
+			</ul>
+		</nav>
+	);
 };
 
 export default NavBar;

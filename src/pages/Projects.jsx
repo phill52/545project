@@ -121,7 +121,18 @@ export default function Projects() {
 	} else {
 		return (
 			<div className="flex flex-col  align-center h-screen home-grad px-[12%]">
-				<Card></Card>
+				<div className="my-10">
+					<Card>
+						<h1
+							className="text-darkviolet font-light text-5xl"
+							style={{
+								textShadow: "0px 3px 3px rgba(0, 0, 0, 0.4)",
+							}}
+						>
+							Projects
+						</h1>
+					</Card>
+				</div>
 
 				{projects ? (
 					<CardList items={projects} />

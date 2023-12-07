@@ -8,7 +8,6 @@ import Project from "./Project";
 import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
-	const { id } = useParams();
 	const navigate = useNavigate();
 
 	const {
@@ -58,44 +57,48 @@ export default function Projects() {
 
 	const ProjectCard = ({ project }) => {
 		return (
-			<Card>
-				<a href={`/project/${project.id}`}>
-					<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8 hover:cursor-pointer hover:underline">
-						{project.name}
-					</h2>
-				</a>
-				{currentProjectID && project.id === currentProjectID.id ? (
-					<div className="bg-brightyellow rounded-[30px] text-center text-darkviolet text-4xl py-3.5 hover:cursor-ponter hover:underline">
-						Current Project
-					</div>
-				) : (
-					<div
-						onClick={() => selectProject(project.id)}
-						className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5 hover:cursor-ponter hover:underline"
-					>
-						Select Project
-					</div>
-				)}
-
-				<div className="flex flex-row mt-2 mb-6">
-					<div>
-						<ul className="text-left text-darkviolet text-4xl w-full">
-							<li>Last ended at {project.lastEnded}</li>
-							<li>Total time: {project.totalTime}</li>
-							<li>Pay rate: {project.payrate}</li>
-						</ul>
-					</div>
-
-					<div className="flex flex-col w-[60%]">
+			<div className="pb-8">
+				<Card>
+					<a href={`/project/${project.id}`}>
+						<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8 hover:cursor-pointer hover:underline">
+							{project.name}
+						</h2>
+					</a>
+					{currentProjectID && project.id === currentProjectID.id ? (
+						<div className="bg-brightyellow rounded-[30px] text-center text-darkviolet text-4xl py-3.5 hover:cursor-ponter hover:underline">
+							Current Project
+						</div>
+					) : (
 						<div
-							className="bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet"
-							onClick={() => deleteProject(project.id)}
+							onClick={() => selectProject(project.id)}
+							className="bg-lightgreen rounded-[30px] text-center text-cream text-4xl py-3.5 hover:cursor-ponter hover:underline"
 						>
-							Delete Project
+							Select Project
+						</div>
+					)}
+					<div className="flex flex-row mt-2 mb-6">
+						<div>
+							<ul className="text-left text-darkviolet text-4xl w-full">
+								<li>
+									{project.lastEnded === "No shifts recorded"
+										? "No shifts recorded"
+										: `${project.lastEnded}`}
+								</li>{" "}
+								<li>Total time: {project.totalTime}</li>
+								<li>Pay rate: {project.payrate}</li>
+							</ul>
+						</div>
+						<div className="flex flex-col w-[60%]">
+							<div
+								className="bg-brightyellow rounded-[30px] text-3xl py-16 text-darkviolet hover:cursor-pointer hover:underline"
+								onClick={() => deleteProject(project.id)}
+							>
+								Delete Project
+							</div>
 						</div>
 					</div>
-				</div>
-			</Card>
+				</Card>
+			</div>
 		);
 	};
 
@@ -122,15 +125,23 @@ export default function Projects() {
 	} else {
 		return (
 			<div className="flex flex-col  align-center h-screen home-grad px-[12%]">
-				{projects ? (
+				<div className="my-10">
+					<Card>
+						<h1 className="text-darkviolet font-bold text-5xl">
+							Projects
+						</h1>
+					</Card>
+				</div>
+
+				{projects && projects.length > 0 ? (
 					<CardList items={projects} />
 				) : (
-					<div className="flex flex-col justify-center align-center h-screen home-grad px-[12%]">
+					<div>
 						<Card>
 							<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">
-								No projects created
+								No Projects Created
 							</h2>
-							<a href="/createproject">
+							<a href="/project/create">
 								<div className="bg-darkblue rounded-[30px] text-center text-cream text-4xl py-3.5 hover:cursor-pointer hover:underline">
 									Create Project
 								</div>

@@ -1,7 +1,5 @@
-import { db } from "./models/db";
+import { db } from "./models/db.js";
 import { timeElapsed, formatDateTime } from "./utilFunctions";
-
-const fetchProjectByID = async (id) => {
 
 const fetchProjectByID = async (id) => {
 	console.log("hello");
@@ -14,7 +12,6 @@ const fetchProjectByID = async (id) => {
 	const project = await db.projects.get(id);
 	let shifts = [];
 	for (let id of project.shifts) {
-
 		let shift = await db.shifts.get(id);
 		shifts.push(shift);
 	}
@@ -25,7 +22,6 @@ const fetchProjectByID = async (id) => {
 const fetchCurrentProjectID = async () => {
 	let currentProjectId = await db.currentproject.toArray();
 	currentProjectId = currentProjectId[0];
-	const currentProjectId = await db.currentproject.get(1);
 	if (currentProjectId) {
 		return currentProjectId;
 	} else {
@@ -80,4 +76,3 @@ export {
 	fetchCurrentProject,
 	fetchAllProjects,
 };
-export { fetchProjectByID, fetchCurrentProjectID, fetchCurrentProject };

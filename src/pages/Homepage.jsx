@@ -101,15 +101,15 @@ export default function Homepage() {
 			<div className="flex flex-col justify-center align-center h-screen home-grad px-[12%]">
 				<Card>
 					<h2 className="text-darkviolet font-bold font-underline text-4xl pb-4 pt-8">
-						No project selected
+						No Project Selected
 					</h2>
-					<a href="/createproject">
+					<a href="/project/create">
 						<div className="bg-darkblue rounded-[30px] text-center text-cream text-4xl py-3.5 hover:cursor-pointer hover:underline">
 							Create Project
 						</div>
 					</a>
 					<br />
-					<a href="/viewprojects">
+					<a href="/projects">
 						<div className="bg-brightyellow rounded-[30px] text-center text-olive text-4xl py-3.5 hover:cursor-pointer hover:underline">
 							View Projects
 						</div>

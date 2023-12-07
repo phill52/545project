@@ -2,6 +2,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Project from "./pages/Project";
 import CreateProject from "./pages/CreateProject";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
 	return (
@@ -11,6 +12,7 @@ function App() {
 					<Route path="/" element={<Homepage />} />
 					<Route path="/project/:id" element={<Project />} />
 					<Route path="/project/create" element={<CreateProject />} />
+					<Route path="*" element={<PageNotFound />} />
 				</Routes>
 			</div>
 		</BrowserRouter>
